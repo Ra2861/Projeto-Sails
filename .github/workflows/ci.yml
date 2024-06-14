@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: npm new
+        run: npm i
 
   run-tests:
     needs: checkout-code
@@ -39,7 +39,7 @@ jobs:
         run: npm test
 
   upload-test-results:
-    needs: run-tests
+    needs: [run-tests, install-dependencies, checkout-code]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

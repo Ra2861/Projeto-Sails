@@ -9,6 +9,7 @@ const RESPONSE = {
     return data;
   },
 };
+
 const USER = {
   id: "cce825bf-09d5-4c8e-a9be-9f4f4a9dba5d",
   username: "Julin",
@@ -20,6 +21,10 @@ const USER = {
 const FILE = (fieldName) => {
   return {
     upload: (options, callback) => {
+      // Garantir que o callback é uma função
+      if (typeof callback !== 'function') {
+        throw new Error('callback is not a function');
+      }
       // Simular o upload do arquivo
       callback(null, [{ fd: "caminho/do/arquivo" }]);
     },
